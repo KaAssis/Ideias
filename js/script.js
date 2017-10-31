@@ -1,49 +1,36 @@
-//Animação Menu NAV
-
+//Ao clicar no hamburguer abre o Menu NAV
 $('.navicon').on('click', function(e) {
     e.preventDefault();
     abreFechaMenu();
 });
-//Para fechar 
+//Para fechar o Menu NAV ao clicar em algum link do menu
 $('.toggle a').on('click', function(){
     abreFechaMenu();
 });
-
+//Abrir e fechar o Menu NAV
 function abreFechaMenu(){
     $('.navicon').toggleClass('navicon--active');
     $('.toggle').toggleClass('toggle--active');
 };
-
-//Para ocupar toda a tela visível
+//Para que as sections ocupem toda a tela visível
 $('section').css('min-height', $(window).height() + 'px');
-
-
-
-// animar navegação vertical
+// Animação para navegação vertical
 $('a[href^="#"]').on('click', function(event) {
-    
     var target = $( $(this).attr('href') );
-    
-    if( target.length ) {
+    if(target.length) {
         event.preventDefault();
         $('html, body').animate({
             scrollTop: target.offset().top
         }, 1000);
     }
-    
 });
-
-
 //Botão do Formulário (Inspirado modelo Codepen https://codepen.io/auginator/pen/oElzF)
-
-
 var white = 'rgb(255,255,255)';
 var seafoam = 'rgb(30,205,151)';  
 $buttonShapes = $('rect.btn-shape');
 $buttonColorShape = $('rect.btn-shape.btn-color');
 $buttonText = $('text.textNode');
 $buttonCheck = $('text.checkNode');
-
 var buttonProps = {
     buttonWidth : $buttonShapes.attr('width'),
     buttonX : $buttonShapes.attr('x'),
@@ -52,7 +39,6 @@ var buttonProps = {
     textX : $buttonText.attr('x'),
     textY : $buttonText.attr('y')
 };
-
 function onUpdateHandler(){
     $buttonShapes.attr('width', buttonProps.buttonWidth);
     $buttonShapes.attr('x', buttonProps.buttonX);
@@ -61,7 +47,6 @@ function onUpdateHandler(){
     $buttonText.attr('x', buttonProps.textX);
     $buttonText.attr('y', buttonProps.textY);
 }
-
 var hover_tl = new TimelineMax({
     tweens:[
         TweenMax.to( $buttonText, .15, { fill:white } ),
@@ -69,9 +54,7 @@ var hover_tl = new TimelineMax({
     ]
 });
 hover_tl.stop();
-
 var tl = new TimelineMax({onComplete:bind_mouseenter});
-
 tl.append( new TimelineMax({
     align:"start",
     tweens:[
@@ -86,19 +69,16 @@ tl.append( new TimelineMax({
         });
     }
 }) );
-
 tl.append(TweenMax.to($buttonColorShape, 1.2, {
     strokeDashoffset:0, 
     ease:Quad.easeIn,
-    onComplete:function(){
-        
+    onComplete:function(){     
         $buttonColorShape.css({
             'strokeDasharray':305,
             'strokeDashoffset':0
         });
     }
 }));
-
 tl.append(new TimelineMax({
     align:"start",
     tweens:[
@@ -107,20 +87,15 @@ tl.append(new TimelineMax({
         TweenMax.to( buttonProps, .25, { buttonX: 3, buttonWidth:130, onUpdate:onUpdateHandler } )
     ]
 }));
-
 tl.stop();
-
 $('.colins-submit').on('click', function(e) {
-
-    //Validação dos dados do formulário
-    
-    var nome = $("form #nome").val();
-    var email = $("form #email").val();
+    var nome = $('form #nome').val();
+    var email = $('form #email').val();
     var emailFiltro =/^.+@.+\..{2,}$/;
     var ilegalCaracter = /[\(\)\<\>\,\;\:\\\/\"\[\]]/;
-
+    //Validação dos dados do formulário antes de fazer a animação e enviar os dados   
     if(!nome || !email ) {
-        alert("Preencha os campos obrigatórios");
+        alert('Preencha os campos obrigatórios');
         return false;
     }else if(!(emailFiltro.test(email))||email.match(ilegalCaracter)){
         alert('Por favor, informe um email válido.');
@@ -131,11 +106,8 @@ $('.colins-submit').on('click', function(e) {
         $('.colins-submit').off('mouseenter');
         $('.colins-submit').off('mouseleave');
     }
-    
 });
-
 bind_mouseenter();
-
 function bind_mouseenter() {
     $('.colins-submit').on('mouseenter', function(e) {
         $('.colins-submit').off('mouseenter');

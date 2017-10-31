@@ -461,6 +461,9 @@ rect.btn-shape.btn-color {
     nav h1 {
         margin:0;
     }
+    .back {
+	display:none;	
+    }
 }
 
 /* Responsividade Tablet */

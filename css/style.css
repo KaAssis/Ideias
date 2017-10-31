@@ -434,7 +434,7 @@ rect.btn-shape.btn-color {
 
 /* Responsividade Celular*/
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 415px) {
     .text_intro p {
         font-size: 24px;
         margin: 35% 0 auto;
@@ -465,7 +465,7 @@ rect.btn-shape.btn-color {
 
 /* Responsividade Tablet */
 
-@media only screen and (min-width: 321px) and (max-width: 768px) {
+@media only screen and (min-width: 416px) and (max-width: 768px) {
     .ideia{
         width:80%;
     }

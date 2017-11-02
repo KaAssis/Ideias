@@ -243,6 +243,10 @@ section {
     line-height: 30px;
     font-size: 20px;
 }
+.text-box {
+    width: 88%;
+    padding: 3%;
+}
 section h2 {
     color:#03A694;
     text-align: left;
